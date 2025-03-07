@@ -14,12 +14,21 @@ struct ContentView: View {
             VStack(alignment: .center, spacing: 2.0) {
                 NavigationStack {
                     List(GroceryItems) { groceryItem in
-//                        NavigationLink(destination: TeamDetail(team: team)) {
-//                            TeamRow(team: team)
-//                        }
-                        ItemRow(groceryItem: groceryItem)
+                        NavigationLink(destination: EditItem(groceryItem: groceryItem)) {
+                            ItemRow(groceryItem: groceryItem)
+                        }
                     }
                     .navigationTitle(Text("Your Fridge"))
+                    .toolbar {
+                              ToolbarItem(placement: .navigationBarTrailing) {
+                                  NavigationLink {
+                                      AddItem()
+                                  } label: {
+                                      Image(systemName: "plus.app")
+                                          .font(.title2)
+                                  }
+                              }
+                            }
                 }
             }
         }
